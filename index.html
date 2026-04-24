@@ -10,12 +10,10 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      overflow: hidden;
     }
 
     #calendar {
       width: 100vw;
-      height: 100vh;
       padding: 10px;
       box-sizing: border-box;
     }
@@ -28,23 +26,25 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
-    
+
     initialView: 'multiMonth',
 
     views: {
       multiMonth: {
         type: 'multiMonth',
         duration: { months: 3 },
-        multiMonthMaxColumns: 3   // 👈 forces horizontal layout
+        multiMonthMaxColumns: 3
       }
     },
 
-    height: '100%',
+    height: 'auto',
+    expandRows: true,
 
     events: {
       url: 'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics',
       format: 'ics'
     }
+
   });
 
   calendar.render();
