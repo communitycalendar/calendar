@@ -10,21 +10,19 @@
     html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
       font-family: Arial, sans-serif;
       background: white;
     }
 
     #calendar {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
     }
 
-    /* Scale everything slightly so all 3 months fit */
+    /* Slightly smaller text so 3 months always fit */
     .fc {
-      transform: scale(0.9);
-      transform-origin: top left;
-      width: 111%; /* compensates for scaling */
+      font-size: 0.95em;
     }
   </style>
 </head>
@@ -47,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     },
 
-    height: '100%',
+    height: 'auto',
 
     events: {
       url: 'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics',
@@ -58,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   calendar.render();
 
-  // auto refresh
+  // Refresh every 10 minutes
   setTimeout(function(){
     location.reload();
   }, 600000);
