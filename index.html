@@ -10,19 +10,26 @@
     html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
       font-family: Arial, sans-serif;
       background: white;
     }
 
-    #calendar {
-      width: 100%;
-      max-width: 1920px;
-      margin: 0 auto;
+    /* Center calendar vertically and horizontally */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* Slightly smaller text so 3 months always fit */
+    #calendar {
+      width: 95%;
+      max-width: 1800px;
+    }
+
+    /* Scale down slightly so all rows (including Saturday) fit */
     .fc {
-      font-size: 0.80em;
+      font-size: 0.85em;
     }
   </style>
 </head>
@@ -56,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   calendar.render();
 
-  // Refresh every 10 minutes
+  // Auto-refresh every 10 minutes
   setTimeout(function(){
     location.reload();
   }, 600000);
