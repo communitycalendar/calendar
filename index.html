@@ -15,34 +15,28 @@
       background: white;
     }
 
-    /* Force full HD layout regardless of Yodeck container */
-    #wrapper {
-      width: 1920px;
-      height: 1080px;
-    }
-
     #calendar {
-      width: 1920px;
+      width: 100vw;
+      height: 100vh;
     }
 
-    /* Make it readable on a TV */
+    /* Scale everything slightly so all 3 months fit */
     .fc {
-      font-size: 1.3em;
+      transform: scale(0.9);
+      transform-origin: top left;
+      width: 111%; /* compensates for scaling */
     }
   </style>
 </head>
 <body>
 
-<div id="wrapper">
-  <div id="calendar"></div>
-</div>
+<div id="calendar"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
   var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
 
-    // 3-month layout
     initialView: 'multiMonth',
 
     views: {
@@ -53,14 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     },
 
-    // Force proper height
-    height: 1080,
+    height: '100%',
 
-    // Prevent Yodeck from forcing layout changes
-    handleWindowResize: false,
-    windowResizeDelay: 0,
-
-    // Outlook calendar feed
     events: {
       url: 'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics',
       format: 'ics'
@@ -70,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   calendar.render();
 
-  // Auto refresh every 10 minutes
+  // auto refresh
   setTimeout(function(){
     location.reload();
   }, 600000);
