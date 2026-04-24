@@ -10,14 +10,12 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      width: 100%;
       font-family: Arial, sans-serif;
+      background: white;
     }
 
     #calendar {
       width: 100%;
-      height: 100%;
     }
   </style>
 </head>
@@ -27,14 +25,19 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+
   var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
 
-    initialView: 'multiMonthYear',   // 👈 more stable than custom multiMonth
+    // ✅ Stable multi-month view
+    initialView: 'multiMonthYear',
 
-    multiMonthMaxColumns: 3,         // 👈 force horizontal
+    // ✅ Force horizontal layout (3 months side-by-side)
+    multiMonthMaxColumns: 3,
 
-    height: '100%',                 // 👈 critical for iframe
+    // ✅ CRITICAL FIX — forces calendar grid to render
+    height: 900,
 
+    // Optional: tighter layout
     contentHeight: 'auto',
 
     events: {
@@ -45,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   calendar.render();
+
 });
 </script>
 
