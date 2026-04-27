@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- FullCalendar core -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-
-  <!-- FullCalendar iCalendar (ICS) plugin -->
+  <!-- FullCalendar Core -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js<!-- FullCalendar iCalendar (ICS) plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
@@ -18,7 +16,6 @@
       background: white;
     }
 
-    /* Center calendar vertically and horizontally */
     body {
       display: flex;
       justify-content: center;
@@ -30,7 +27,6 @@
       max-width: 1800px;
     }
 
-    /* Scale down slightly so all rows fit on TV displays */
     .fc {
       font-size: 0.85em;
     }
@@ -59,9 +55,10 @@
           height: 'auto',
 
           events: {
-            // ✅ BULLET‑PROOF CACHE BUSTING
-            url: 'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics'
-                 + '?cb=' + new Date().getTime(),
+            // Bullet‑proof cache busting
+            url:
+              'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics'
+              + '?cb=' + Date.now(),
             format: 'ics'
           }
         }
@@ -69,7 +66,7 @@
 
       calendar.render();
 
-      // Auto refresh every 10 minutes (good for Yodeck)
+      // Auto refresh every 10 minutes
       setTimeout(() => location.reload(), 600000);
     });
   </script>
