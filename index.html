@@ -34,3 +34,46 @@
     .fc {
       font-size: 0.85em;
     }
+  </style>
+</head>
+<body>
+
+  <div id="calendar"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      const calendar = new FullCalendar.Calendar(
+        document.getElementById('calendar'),
+        {
+          initialView: 'multiMonth',
+
+          views: {
+            multiMonth: {
+              type: 'multiMonth',
+              duration: { months: 2 },
+              multiMonthMaxColumns: 2
+            }
+          },
+
+          height: 'auto',
+
+          events: {
+            // ✅ BULLET‑PROOF CACHE BUSTING
+            url: 'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics'
+                 + '?cb=' + new Date().getTime(),
+            format: 'ics'
+          }
+        }
+      );
+
+      calendar.render();
+
+      // Auto refresh every 10 minutes (good for Yodeck)
+      setTimeout(() => location.reload(), 600000);
+    });
+  </script>
+
+</body>
+</html>
+</html>
