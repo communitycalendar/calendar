@@ -3,13 +3,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- FullCalendar core -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6obal.min.js
-
-  <!-- FullCalendar iCalendar (ICS) plugin -->
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6obal.min.js
-
-  <style>
+  <script src="https://cdn/npm/fullcalendar@6.1.8/index.global.min.js
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.globaltyle>
     html, body {
       margin: 0;
       padding: 0;
@@ -36,41 +31,40 @@
 </head>
 <body>
 
-  <div id="calendar"></div>
+<div id="calendar"></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-      const calendar = new FullCalendar.Calendar(
-        document.getElementById('calendar'),
-        {
-          initialView: 'multiMonth',
+  const calendar = new FullCalendar.Calendar(
+    document.getElementById('calendar'),
+    {
+      initialView: 'multiMonth',
 
-          views: {
-            multiMonth: {
-              type: 'multiMonth',
-              duration: { months: 2 },
-              multiMonthMaxColumns: 2
-            }
-          },
-
-          height: 'auto',
-
-          events: {
-            url:
-              'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics'
-              + '?cb=' + Date.now(),
-            format: 'ics'
-          }
+      views: {
+        multiMonth: {
+          type: 'multiMonth',
+          duration: { months: 2 },
+          multiMonthMaxColumns: 2
         }
-      );
+      },
 
-      calendar.render();
+      height: 'auto',
 
-      // Auto‑refresh every 10 minutes (Yodeck‑friendly)
-      setTimeout(() => location.reload(), 600000);
-    });
-  </script>
+      events: {
+        url:
+          'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics'
+          + '?cb=' + Date.now(),
+        format: 'ics'
+      }
+    }
+  );
+
+  calendar.render();
+
+  setTimeout(() => location.reload(), 600000);
+});
+</script>
 
 </body>
 </html>
