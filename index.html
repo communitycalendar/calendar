@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- FullCalendar Core -->
+  <!-- FullCalendar core -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
-  <!-- MultiMonth Plugin -->
+  <!-- MultiMonth plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
 
-  <!-- iCalendar (ICS) Plugin -->
+  <!-- iCalendar (ICS) plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
@@ -62,8 +62,10 @@ document.addEventListener('DOMContentLoaded', function () {
       eventSources: [
         {
           url:
-            'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics'
-            + '?cb=' + Date.now(),
+            'https://corsproxy.io/?'
+            + encodeURIComponent(
+              'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics'
+            ),
           format: 'ics'
         }
       ]
@@ -72,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   calendar.render();
 
-  // Auto-refresh every 10 minutes (signage-friendly)
+  // Auto refresh every 10 minutes (Yodeck-safe)
   setTimeout(() => location.reload(), 600000);
 });
 </script>
