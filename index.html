@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- FullCalendar core -->
+  <!-- FullCalendar Core -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
-  <!-- FullCalendar MultiMonth plugin (REQUIRED for multiMonth view) -->
+  <!-- MultiMonth Plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
 
-  <!-- FullCalendar iCalendar (ICS) plugin -->
+  <!-- iCalendar (ICS) Plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
@@ -21,7 +21,6 @@
       background: white;
     }
 
-    /* Center calendar vertically and horizontally */
     body {
       display: flex;
       justify-content: center;
@@ -33,7 +32,6 @@
       max-width: 1800px;
     }
 
-    /* Scale slightly so full months fit on TVs */
     .fc {
       font-size: 0.85em;
     }
@@ -41,41 +39,43 @@
 </head>
 <body>
 
-  <div id="calendar"></div>
+<div id="calendar"></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-      const calendarEl = document.getElementById('calendar');
+  const calendar = new FullCalendar.Calendar(
+    document.getElementById('calendar'),
+    {
+      initialView: 'multiMonth',
 
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'multiMonth',
+      views: {
+        multiMonth: {
+          type: 'multiMonth',
+          duration: { months: 2 },
+          multiMonthMaxColumns: 2
+        }
+      },
 
-        views: {
-          multiMonth: {
-            type: 'multiMonth',
-            duration: { months: 2 },
-            multiMonthMaxColumns: 2
-          }
-        },
+      height: 'auto',
 
-        height: 'auto',
-
-        events: {
-          // Bullet‑proof cache busting for Outlook / GitHub / Yodeck
+      eventSources: [
+        {
           url:
             'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics'
             + '?cb=' + Date.now(),
           format: 'ics'
         }
-      });
+      ]
+    }
+  );
 
-      calendar.render();
+  calendar.render();
 
-      // Auto-refresh every 10 minutes (recommended for signage)
-      setTimeout(() => location.reload(), 600000);
-    });
-  </script>
+  // Auto-refresh every 10 minutes (signage-friendly)
+  setTimeout(() => location.reload(), 600000);
+});
+</script>
 
 </body>
 </html>
