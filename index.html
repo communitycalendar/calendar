@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 
-  <!-- FullCalendar Core -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js<!-- FullCalendar iCalendar (ICS) plugin -->
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
+  <!-- FullCalendar core -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6obal.min.js
+
+  <!-- FullCalendar iCalendar (ICS) plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6obal.min.js
 
   <style>
     html, body {
@@ -55,7 +57,6 @@
           height: 'auto',
 
           events: {
-            // Bullet‑proof cache busting
             url:
               'https://outlook.office365.com/owa/calendar/c05d4844233c48bba59d9032c7f20f74@gitxaalanation.com/80b9ce196a384e03b25cd405ff62601f3240945399565290191/calendar.ics'
               + '?cb=' + Date.now(),
@@ -66,7 +67,7 @@
 
       calendar.render();
 
-      // Auto refresh every 10 minutes
+      // Auto‑refresh every 10 minutes (Yodeck‑friendly)
       setTimeout(() => location.reload(), 600000);
     });
   </script>
