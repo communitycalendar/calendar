@@ -4,15 +4,12 @@
   <meta charset="UTF-8">
   <title>Community Calendar</title>
 
- 
-<!-- FullCalendar core -->
-https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.jsscript>
+  <!-- FullCalendar core -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js<!-- MultiMonth plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
 
-<!-- MultiMonth plugin -->
-https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.jsscript>
-
-<!-- iCalendar (ICS) plugin -->
-https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js
+  <!-- iCalendar (ICS) plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
     html, body {
@@ -60,22 +57,4 @@ https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js
         },
 
         height: "auto",
-
-        eventSources: [
-          {
-            url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
-            format: "ics"
-          }
-        ]
-      });
-
-      calendar.render();
-
-      // Auto‑refresh every 10 minutes (Yodeck‑safe)
-      setTimeout(() => location.reload(), 600000);
-    });
-  </script>
-
-</body>
-</html>
 
