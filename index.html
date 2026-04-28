@@ -8,11 +8,15 @@
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
-t src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min
+  />
+
+  <!-- FullCalendar Core -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
   <!-- MultiMonth plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
 
-  <!-- iCalendar parser -->
+  <!-- iCalendar parser (REQUIRED) -->
   <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
 
   <!-- FullCalendar iCalendar plugin -->
@@ -86,7 +90,7 @@ t src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min
   <div class="page-container">
 
     <div class="header">
-      <img src="logo.png" alt="Community Logo" class="logo" />
+      <img src="logo.png" alt="Organization Logo" class="logo">
     </div>
 
     <div id="calendar"></div>
@@ -129,7 +133,6 @@ t src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min
 
       calendar.render();
 
-      // Auto-refresh every 10 minutes for signage
       setTimeout(() => location.reload(), 600000);
     });
   </script>
