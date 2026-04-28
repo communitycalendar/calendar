@@ -5,9 +5,11 @@
   <title>Community Calendar</title>
 
   <!-- FullCalendar CSS -->
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js<!-- MultiMonth plugin -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
+t src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min
+  <!-- MultiMonth plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
 
   <!-- iCalendar parser -->
@@ -42,7 +44,7 @@
     .header {
       width: 100%;
       text-align: center;
-      padding: 10px 0 5px 0;
+      padding: 10px 0 5px;
     }
 
     .logo {
@@ -58,7 +60,7 @@
       font-size: 0.85em;
     }
 
-    /* Allow wrapping instead of truncation */
+    /* Allow long titles to wrap */
     .fc .fc-daygrid-event {
       white-space: normal !important;
       align-items: flex-start;
@@ -71,11 +73,11 @@
       line-height: 1.2;
     }
 
-    /* Ferry color */
+    /* Ferry events */
     .event-ferry {
       background-color: #b71c1c !important;
       border-color: #b71c1c !important;
-      color: white !important;
+      color: #ffffff !important;
     }
   </style>
 </head>
@@ -84,7 +86,7 @@
   <div class="page-container">
 
     <div class="header">
-      <img src="logo.png" alt="Logo" class="logo">
+      <img src="logo.png" alt="Community Logo" class="logo" />
     </div>
 
     <div id="calendar"></div>
@@ -107,8 +109,7 @@
             }
           },
 
-          initialDate: new Date().toISOString().slice(0,7) + "-01",
-
+          initialDate: new Date().toISOString().slice(0, 7) + "-01",
           height: "auto",
 
           eventSources: [
@@ -128,10 +129,10 @@
 
       calendar.render();
 
+      // Auto-refresh every 10 minutes for signage
       setTimeout(() => location.reload(), 600000);
     });
   </script>
 
 </body>
 </html>
-``
