@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Calendar ICS AllOrigins Test</title>
+  <title>Community Calendar</title>
 
   <!-- FullCalendar core -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
@@ -18,14 +18,15 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: Arial, sans-serif;
       background: white;
+      font-family: Arial, sans-serif;
     }
 
+    /* Center calendar on screen */
     body {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
 
     #calendar {
@@ -33,6 +34,7 @@
       max-width: 1800px;
     }
 
+    /* Slightly smaller text so all weeks fit on TVs */
     .fc {
       font-size: 0.85em;
     }
@@ -40,40 +42,41 @@
 </head>
 <body>
 
-<div id="calendar"></div>
+  <div id="calendar"></div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-  const calendar = new FullCalendar.Calendar(
-    document.getElementById('calendar'),
-    {
-      initialView: 'multiMonth',
+      const calendarEl = document.getElementById("calendar");
 
-      views: {
-        multiMonth: {
-          type: 'multiMonth',
-          duration: { months: 2 },
-          multiMonthMaxColumns: 2
-        }
-      },
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: "multiMonth",
 
-      height: 'auto',
+        views: {
+          multiMonth: {
+            type: "multiMonth",
+            duration: { months: 2 },
+            multiMonthMaxColumns: 2
+          }
+        },
 
-      eventSources: [
-        {
-          url:
-            'https://api.allorigins.win/raw?url=' +
-            encodeURIComponent('https://fullcalendar.io/api/demo-feeds/ics'),
-          format: 'ics'
-        }
-      ]
-    }
-  );
+        height: "auto",
 
-  calendar.render();
-});
-</script>
+        eventSources: [
+          {
+            // ✅ Azure Function proxy (THIS IS THE KEY)
+            url: "https://community-calendar-proxy.azurewebsites.net/api/calendar",
+            format: "ics"
+          }
+        ]
+      });
+
+      calendar.render();
+
+      // Auto-refresh every 10 minutes (good for signage)
+      setTimeout(() => location.reload(), 600000);
+    });
+  </script>
 
 </body>
 </html>
