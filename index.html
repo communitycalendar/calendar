@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <title>Calendar Test</title>
 
-  <!-- FullCalendar core ONLY -->
+  <!-- FullCalendar core -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+  <!-- MultiMonth plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
 
   <style>
     html, body {
@@ -23,8 +26,12 @@
     }
 
     #calendar {
-      width: 90%;
-      max-width: 1200px;
+      width: 95%;
+      max-width: 1800px;
+    }
+
+    .fc {
+      font-size: 0.85em;
     }
   </style>
 </head>
@@ -34,10 +41,22 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+
   const calendar = new FullCalendar.Calendar(
     document.getElementById('calendar'),
     {
-      initialView: 'dayGridMonth',
+      initialView: 'multiMonth',
+
+      views: {
+        multiMonth: {
+          type: 'multiMonth',
+          duration: { months: 2 },
+          multiMonthMaxColumns: 2
+        }
+      },
+
+      height: 'auto',
+
       events: [
         {
           title: 'TEST EVENT',
