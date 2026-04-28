@@ -5,19 +5,16 @@
   <title>Community Calendar</title>
 
   <!-- FullCalendar CSS -->
-  https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css
-
-  <!-- FullCalendar Core -->
-  https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.jsscript>
-
-  <!-- MultiMonth plugin -->
-  https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.jsscript>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js<!-- MultiMonth plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
 
   <!-- iCalendar parser -->
-  https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js
+  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
 
   <!-- FullCalendar iCalendar plugin -->
-  https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
     html, body {
@@ -42,7 +39,6 @@
       align-items: center;
     }
 
-    /* Logo header */
     .header {
       width: 100%;
       text-align: center;
@@ -58,12 +54,11 @@
       width: 95%;
     }
 
-    /* Slightly smaller text for TV displays */
     .fc {
       font-size: 0.85em;
     }
 
-    /* Allow event titles to wrap */
+    /* Allow wrapping instead of truncation */
     .fc .fc-daygrid-event {
       white-space: normal !important;
       align-items: flex-start;
@@ -76,7 +71,7 @@
       line-height: 1.2;
     }
 
-    /* ✅ Ferry event color */
+    /* Ferry color */
     .event-ferry {
       background-color: #b71c1c !important;
       border-color: #b71c1c !important;
@@ -88,12 +83,10 @@
 
   <div class="page-container">
 
-    <!-- Logo -->
     <div class="header">
-      logo.png
+      <img src="logo.png" alt="Logo" class="logo">
     </div>
 
-    <!-- Calendar -->
     <div id="calendar"></div>
 
   </div>
@@ -114,8 +107,7 @@
             }
           },
 
-          /* Always show current + next month */
-          initialDate: new Date().toISOString().slice(0, 7) + "-01",
+          initialDate: new Date().toISOString().slice(0,7) + "-01",
 
           height: "auto",
 
@@ -126,11 +118,8 @@
             }
           ],
 
-          /* ✅ Apply colors when events render */
           eventDidMount: function (info) {
-            const title = info.event.title.toLowerCase();
-
-            if (title.includes("ferry")) {
+            if (info.event.title.toLowerCase().includes("ferry")) {
               info.el.classList.add("event-ferry");
             }
           }
@@ -139,7 +128,6 @@
 
       calendar.render();
 
-      /* Auto-refresh every 10 minutes */
       setTimeout(() => location.reload(), 600000);
     });
   </script>
