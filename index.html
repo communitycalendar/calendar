@@ -58,3 +58,20 @@
 
         height: "auto",
 
+        eventSources: [
+          {
+            url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
+            format: "ics"
+          }
+        ]
+      });
+
+      calendar.render();
+
+      // Auto-refresh every 10 minutes (safe for Yodeck)
+      setTimeout(() => location.reload(), 600000);
+    });
+  </script>
+
+</body>
+</html>
