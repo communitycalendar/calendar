@@ -6,27 +6,24 @@
 
   <!-- FullCalendar CSS -->
   <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.jsiMonth plugin -->
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min
+        href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css">
+
+  <!-- FullCalendar Core -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
   <!-- iCalendar (ICS) plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      background: white;
       font-family: Arial, sans-serif;
-    }
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: white;
     }
     #calendar {
-      width: 95%;
-      max-width: 1800px;
+      max-width: 1200px;
+      margin: 40px auto;
     }
   </style>
 </head>
@@ -36,33 +33,17 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("Page loaded");
-  console.log("FullCalendar:", FullCalendar);
-  console.log("iCalendar plugin:", FullCalendar.IcsCalendar);
 
-  var calendar = new FullCalendar.Calendar(
+  const calendar = new FullCalendar.Calendar(
     document.getElementById("calendar"),
     {
-      initialView: "multiMonth",
+      initialView: "dayGridMonth",
       initialDate: "2026-04-01",
-
-      views: {
-        multiMonth: {
-          type: "multiMonth",
-          duration: { months: 2 }
-        }
-      },
 
       eventSources: [
         {
           url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
-          format: "ics",
-          success: function () {
-            console.log("ICS loaded successfully");
-          },
-          failure: function (err) {
-            console.error("ICS failed", err);
-          }
+          format: "ics"
         }
       ]
     }
@@ -74,3 +55,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+``
