@@ -5,9 +5,7 @@
   <title>Community Calendar</title>
 
   <!-- FullCalendar core -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-
-  <!-- MultiMonth plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js<!-- MultiMonth plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
 
   <!-- iCalendar (ICS) plugin -->
@@ -22,7 +20,7 @@
       font-family: Arial, sans-serif;
     }
 
-    /* Center calendar on screen */
+    /* Center the calendar for TV displays */
     body {
       display: flex;
       align-items: center;
@@ -34,7 +32,7 @@
       max-width: 1800px;
     }
 
-    /* Slightly smaller text so all weeks fit on TVs */
+    /* Slightly smaller text so months fit cleanly on screens */
     .fc {
       font-size: 0.85em;
     }
@@ -64,8 +62,8 @@
 
         eventSources: [
           {
-            // ✅ Azure Function proxy (THIS IS THE KEY)
-            url: "https://community-calendar-proxy.azurewebsites.net/api/calendar",
+            /* ✅ Azure Function proxy (THIS is the correct URL pattern) */
+            url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
             format: "ics"
           }
         ]
@@ -73,8 +71,10 @@
 
       calendar.render();
 
-      // Auto-refresh every 10 minutes (good for signage)
-      setTimeout(() => location.reload(), 600000);
+      /* Auto refresh every 10 minutes — ideal for Yodeck */
+      setTimeout(function () {
+        location.reload();
+      }, 600000);
     });
   </script>
 
