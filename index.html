@@ -5,19 +5,19 @@
   <title>Community Calendar</title>
 
   <!-- FullCalendar CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css">
+  https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css
 
   <!-- FullCalendar Core -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.jsscript>
 
   <!-- MultiMonth plugin -->
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
+  https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.jsscript>
 
   <!-- iCalendar parser -->
-  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
+  https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js
 
   <!-- FullCalendar iCalendar plugin -->
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
+  https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js>
 
   <style>
     html, body {
@@ -50,7 +50,7 @@
     }
 
     .logo {
-      max-height: 80px;   /* Adjust if needed */
+      max-height: 80px;
       width: auto;
     }
 
@@ -58,12 +58,12 @@
       width: 95%;
     }
 
-    /* Slightly smaller text for TVs */
+    /* Slightly smaller text for TV displays */
     .fc {
       font-size: 0.85em;
     }
 
-    /* ✅ Allow event titles to wrap (no truncation) */
+    /* Allow event titles to wrap */
     .fc .fc-daygrid-event {
       white-space: normal !important;
       align-items: flex-start;
@@ -75,6 +75,13 @@
       word-break: break-word;
       line-height: 1.2;
     }
+
+    /* ✅ Ferry event color */
+    .event-ferry {
+      background-color: #b71c1c !important;
+      border-color: #b71c1c !important;
+      color: white !important;
+    }
   </style>
 </head>
 <body>
@@ -83,7 +90,7 @@
 
     <!-- Logo -->
     <div class="header">
-      <img src="logo.png" alt="Organization Logo" class="logo">
+      logo.png
     </div>
 
     <!-- Calendar -->
@@ -107,7 +114,7 @@
             }
           },
 
-          /* Always show current month + next month */
+          /* Always show current + next month */
           initialDate: new Date().toISOString().slice(0, 7) + "-01",
 
           height: "auto",
@@ -117,16 +124,26 @@
               url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
               format: "ics"
             }
-          ]
+          ],
+
+          /* ✅ Apply colors when events render */
+          eventDidMount: function (info) {
+            const title = info.event.title.toLowerCase();
+
+            if (title.includes("ferry")) {
+              info.el.classList.add("event-ferry");
+            }
+          }
         }
       );
 
       calendar.render();
 
-      /* Auto-refresh every 10 minutes (signage safe) */
+      /* Auto-refresh every 10 minutes */
       setTimeout(() => location.reload(), 600000);
     });
   </script>
 
 </body>
 </html>
+``
