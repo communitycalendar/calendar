@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Calendar ICS Test</title>
+  <title>Calendar ICS Proxy Test</title>
 
   <!-- FullCalendar core -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
@@ -62,7 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       eventSources: [
         {
-          url: 'https://fullcalendar.io/api/demo-feeds/ics',
+          url:
+            'https://corsproxy.io/?'
+            + encodeURIComponent('https://fullcalendar.io/api/demo-feeds/ics'),
           format: 'ics'
         }
       ]
@@ -75,3 +77,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </body>
 </html>
+``
