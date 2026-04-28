@@ -5,12 +5,8 @@
   <title>Community Calendar</title>
 
   <!-- FullCalendar core -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.globalpt>
-
-  <!-- MultiMonth plugin -->
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
-
-  <!-- iCalendar (ICS) plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.jsiMonth plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js<!-- iCalendar (ICS) plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
@@ -70,12 +66,11 @@
 
       calendar.render();
 
-      // Auto-refresh every 10 minutes (good for Yodeck)
-      setTimeout(function () {
-        location.reload();
-      }, 600000);
+      // Auto‑refresh every 10 minutes (Yodeck‑safe)
+      setTimeout(() => location.reload(), 600000);
     });
   </script>
 
 </body>
 </html>
+
