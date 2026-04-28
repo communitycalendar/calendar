@@ -23,7 +23,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       height: 100%;
@@ -42,9 +43,22 @@
       max-width: 1800px;
     }
 
-    /* Slightly smaller text for TVs */
+    /* Slightly smaller text for TV displays */
     .fc {
       font-size: 0.85em;
+    }
+
+    /* ✅ FIX: allow event titles to wrap instead of truncating */
+    .fc .fc-daygrid-event {
+      white-space: normal !important;
+      align-items: flex-start;
+    }
+
+    .fc .fc-daygrid-event .fc-event-title {
+      white-space: normal !important;
+      overflow: visible;
+      word-break: break-word;
+      line-height: 1.2;
     }
   </style>
 </head>
@@ -58,7 +72,7 @@
       const calendar = new FullCalendar.Calendar(
         document.getElementById("calendar"),
         {
-          /* Two‑month view */
+          /* Two-month view */
           initialView: "multiMonth",
 
           views: {
@@ -69,7 +83,7 @@
             }
           },
 
-          /* Always start on the current month */
+          /* Always show current month + next */
           initialDate: new Date().toISOString().slice(0, 7) + "-01",
 
           height: "auto",
@@ -85,7 +99,7 @@
 
       calendar.render();
 
-      /* Auto‑refresh every 10 minutes for digital signage */
+      /* Auto-refresh every 10 minutes (signage safe) */
       setTimeout(function () {
         location.reload();
       }, 600000);
