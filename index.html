@@ -1,54 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-
-  <!-- FullCalendar core -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.bal.min.js
-
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: white;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #calendar {
-      width: 90%;
-      max-width: 1200px;
-    }
-  </style>
+  <title>Calendar Test</title>
 </head>
-<body>
+<body
+  style="display:flex;align-items:center;justify-content:center;
+         height:100vh;font-size:48px;font-family:sans-serif;">
 
-  <div id="calendar"></div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const calendar = new FullCalendar.Calendar(
-        document.getElementById('calendar'),
-        {
-          initialView: 'dayGridMonth',
-          events: [
-            {
-              title: 'TEST EVENT',
-              start: new Date().toISOString().split('T')[0]
-            }
-          ]
-        }
-      );
-
-      calendar.render();
-    });
-  </script>
+  ✅ HELLO – THIS PAGE IS LOADING
 
 </body>
 </html>
