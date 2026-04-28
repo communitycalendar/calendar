@@ -4,18 +4,10 @@
   <meta charset="UTF-8">
   <title>Community Calendar</title>
 
-  <!-- FullCalendar CSS (required for events to display) -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
-  />
-
-  <!-- FullCalendar core -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-
-  <!-- MultiMonth plugin -->
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
-
+  <!-- FullCalendar CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.jsiMonth plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min
   <!-- iCalendar (ICS) plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
@@ -27,65 +19,58 @@
       background: white;
       font-family: Arial, sans-serif;
     }
-
     body {
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
     }
-
     #calendar {
       width: 95%;
       max-width: 1800px;
-    }
-
-    .fc {
-      font-size: 0.85em;
     }
   </style>
 </head>
 <body>
 
-  <div id="calendar"></div>
+<div id="calendar"></div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("Page loaded");
+  console.log("FullCalendar:", FullCalendar);
+  console.log("iCalendar plugin:", FullCalendar.IcsCalendar);
 
-      const calendar = new FullCalendar.Calendar(
-        document.getElementById("calendar"),
-        {
-          initialView: "multiMonth",
+  var calendar = new FullCalendar.Calendar(
+    document.getElementById("calendar"),
+    {
+      initialView: "multiMonth",
+      initialDate: "2026-04-01",
 
-          // Your ICS events are in April 2026 – force calendar there
-          initialDate: "2026-04-01",
-
-          views: {
-            multiMonth: {
-              type: "multiMonth",
-              duration: { months: 2 },
-              multiMonthMaxColumns: 2
-            }
-          },
-
-          height: "auto",
-
-          eventSources: [
-            {
-              url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
-              format: "ics"
-            }
-          ]
+      views: {
+        multiMonth: {
+          type: "multiMonth",
+          duration: { months: 2 }
         }
-      );
+      },
 
-      calendar.render();
+      eventSources: [
+        {
+          url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
+          format: "ics",
+          success: function () {
+            console.log("ICS loaded successfully");
+          },
+          failure: function (err) {
+            console.error("ICS failed", err);
+          }
+        }
+      ]
+    }
+  );
 
-      // Auto‑refresh every 10 minutes (Yodeck‑safe)
-      setTimeout(function () {
-        location.reload();
-      }, 600000);
-    });
-  </script>
+  calendar.render();
+});
+</script>
 
 </body>
 </html>
