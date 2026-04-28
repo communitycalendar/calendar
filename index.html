@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Calendar Test</title>
+  <title>Calendar ICS Test</title>
 
   <!-- FullCalendar core -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
   <!-- MultiMonth plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
+
+  <!-- iCalendar (ICS) plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
     html, body {
@@ -57,10 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
       height: 'auto',
 
-      events: [
+      eventSources: [
         {
-          title: 'TEST EVENT',
-          start: new Date().toISOString().split('T')[0]
+          url: 'https://fullcalendar.io/api/demo-feeds/ics',
+          format: 'ics'
         }
       ]
     }
