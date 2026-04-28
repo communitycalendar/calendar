@@ -4,9 +4,14 @@
   <meta charset="UTF-8">
   <title>Community Calendar</title>
 
-  <!-- FullCalendar CSS (REQUIRED) -->
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.cssipt src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.globalpt>
+  <!-- FullCalendar CSS (required for events to display) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
+  />
+
+  <!-- FullCalendar core -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
   <!-- MultiMonth plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
@@ -41,50 +46,46 @@
 </head>
 <body>
 
-<div id="calendar"></div>
+  <div id="calendar"></div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-  const calendar = new FullCalendar.Calendar(
-    document.getElementById("calendar"),
-    {
-      initialView: "multiMonth",
-
-      /* FORCE calendar into the month your ICS events are in */
-      initialDate: "2026-04-01",
-
-      views: {
-        multiMonth: {
-          type: "multiMonth",
-          duration: { months: 2 },
-          multiMonthMaxColumns: 2
-        }
-      },
-
-      height: "auto",
-
-      eventSources: [
+      const calendar = new FullCalendar.Calendar(
+        document.getElementById("calendar"),
         {
-          url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
-          format: "ics",
-          failure: function () {
-            console.error("ICS feed failed to load");
-          }
+          initialView: "multiMonth",
+
+          // Your ICS events are in April 2026 – force calendar there
+          initialDate: "2026-04-01",
+
+          views: {
+            multiMonth: {
+              type: "multiMonth",
+              duration: { months: 2 },
+              multiMonthMaxColumns: 2
+            }
+          },
+
+          height: "auto",
+
+          eventSources: [
+            {
+              url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
+              format: "ics"
+            }
+          ]
         }
-      ]
-    }
-  );
+      );
 
-  calendar.render();
+      calendar.render();
 
-  /* Auto-refresh every 10 minutes (Yodeck-safe) */
-  setTimeout(function () {
-    location.reload();
-  }, 600000);
-});
-</script>
+      // Auto‑refresh every 10 minutes (Yodeck‑safe)
+      setTimeout(function () {
+        location.reload();
+      }, 600000);
+    });
+  </script>
 
 </body>
 </html>
-``
