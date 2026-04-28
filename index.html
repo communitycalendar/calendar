@@ -5,56 +5,92 @@
   <title>Community Calendar</title>
 
   <!-- FullCalendar CSS -->
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
+  />
 
   <!-- FullCalendar Core -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
-  <!-- REQUIRED: iCalendar parser (defines global ICAL) -->
+  <!-- MultiMonth plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
+
+  <!-- iCalendar parser (REQUIRED) -->
   <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
 
   <!-- FullCalendar iCalendar plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
       background: white;
       font-family: Arial, sans-serif;
     }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     #calendar {
-      max-width: 1200px;
-      margin: 40px auto;
+      width: 95%;
+      max-width: 1800px;
+    }
+
+    /* Slightly smaller text for TVs */
+    .fc {
+      font-size: 0.85em;
     }
   </style>
 </head>
 <body>
 
-<div id="calendar"></div>
+  <div id="calendar"></div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-  const calendar = new FullCalendar.Calendar(
-    document.getElementById("calendar"),
-    {
-      initialView: "dayGridMonth",
-      initialDate: "2026-04-01",
-
-      eventSources: [
+      const calendar = new FullCalendar.Calendar(
+        document.getElementById("calendar"),
         {
-          url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
-          format: "ics"
-        }
-      ]
-    }
-  );
+          /* Two‑month view */
+          initialView: "multiMonth",
 
-  calendar.render();
-});
-</script>
+          views: {
+            multiMonth: {
+              type: "multiMonth",
+              duration: { months: 2 },
+              multiMonthMaxColumns: 2
+            }
+          },
+
+          /* Always start on the current month */
+          initialDate: new Date().toISOString().slice(0, 7) + "-01",
+
+          height: "auto",
+
+          eventSources: [
+            {
+              url: "https://community-calendar-proxy-aebgbqdpamayefht.canadacentral-01.azurewebsites.net/api/calendar",
+              format: "ics"
+            }
+          ]
+        }
+      );
+
+      calendar.render();
+
+      /* Auto‑refresh every 10 minutes for digital signage */
+      setTimeout(function () {
+        location.reload();
+      }, 600000);
+    });
+  </script>
 
 </body>
 </html>
