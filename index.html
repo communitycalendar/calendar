@@ -5,10 +5,7 @@
   <title>Community Calendar</title>
 
   <!-- FullCalendar CSS -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css">
 
   <!-- FullCalendar Core -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
@@ -16,15 +13,14 @@
   <!-- MultiMonth plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/multimonth@6.1.8/index.global.min.js"></script>
 
-  <!-- iCalendar parser (REQUIRED) -->
+  <!-- iCalendar parser -->
   <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
 
   <!-- FullCalendar iCalendar plugin -->
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@6.1.8/index.global.min.js"></script>
 
   <style>
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       height: 100%;
@@ -35,20 +31,39 @@
     body {
       display: flex;
       justify-content: center;
+      align-items: flex-start;
+    }
+
+    .page-container {
+      width: 100%;
+      max-width: 1800px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+    }
+
+    /* Logo header */
+    .header {
+      width: 100%;
+      text-align: center;
+      padding: 10px 0 5px 0;
+    }
+
+    .logo {
+      max-height: 80px;   /* Adjust if needed */
+      width: auto;
     }
 
     #calendar {
       width: 95%;
-      max-width: 1800px;
     }
 
-    /* Slightly smaller text for TV displays */
+    /* Slightly smaller text for TVs */
     .fc {
       font-size: 0.85em;
     }
 
-    /* ✅ FIX: allow event titles to wrap instead of truncating */
+    /* ✅ Allow event titles to wrap (no truncation) */
     .fc .fc-daygrid-event {
       white-space: normal !important;
       align-items: flex-start;
@@ -64,7 +79,17 @@
 </head>
 <body>
 
-  <div id="calendar"></div>
+  <div class="page-container">
+
+    <!-- Logo -->
+    <div class="header">
+      <img src="logo.png" alt="Organization Logo" class="logo">
+    </div>
+
+    <!-- Calendar -->
+    <div id="calendar"></div>
+
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -72,7 +97,6 @@
       const calendar = new FullCalendar.Calendar(
         document.getElementById("calendar"),
         {
-          /* Two-month view */
           initialView: "multiMonth",
 
           views: {
@@ -83,7 +107,7 @@
             }
           },
 
-          /* Always show current month + next */
+          /* Always show current month + next month */
           initialDate: new Date().toISOString().slice(0, 7) + "-01",
 
           height: "auto",
@@ -100,9 +124,7 @@
       calendar.render();
 
       /* Auto-refresh every 10 minutes (signage safe) */
-      setTimeout(function () {
-        location.reload();
-      }, 600000);
+      setTimeout(() => location.reload(), 600000);
     });
   </script>
 
